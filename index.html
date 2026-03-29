@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Office of the Organizing Secretary | Adamawa State</title>
+    <title>Office of the Organizing Secretary | Adamawa State Chapter</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background: #f1f5f9; }
+        body { font-family: 'Inter', sans-serif; background: #f8fafc; }
         .sidebar-item:hover { background: #1e293b; color: #fbbf24; transform: translateX(5px); transition: 0.3s; }
         .active-lga { background: #1e293b !important; color: #fbbf24 !important; border-left: 4px solid #10b981; font-weight: 800; }
         .stat-card { transition: transform 0.3s ease; }
         .stat-card:hover { transform: translateY(-5px); }
+        /* Professional Scrollbar */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
     </style>
 </head>
 <body class="text-slate-900">
@@ -29,12 +32,12 @@
                     <h2 class="text-lg font-bold text-slate-300 uppercase tracking-widest mt-1">Adamawa State Chapter</h2>
                     <div class="flex items-center gap-3 mt-1">
                         <p id="live-clock" class="text-slate-500 text-[10px] font-mono font-bold tracking-widest uppercase"></p>
-                        <span id="sync-status" class="text-emerald-500 text-[9px] font-black uppercase px-2 py-0.5 bg-emerald-900/30 rounded border border-emerald-800 hidden tracking-tighter italic">Data Synced</span>
+                        <span id="sync-status" class="text-emerald-500 text-[9px] font-black uppercase px-2 py-0.5 bg-emerald-900/30 rounded border border-emerald-800 hidden tracking-tighter italic">Last Updated: Just Now</span>
                     </div>
                 </div>
             </div>
 
-            <div class="flex items-center gap-4 bg-slate-800/50 p-3 rounded-2xl border border-slate-700 shadow-inner">
+            <div class="flex items-center gap-4 bg-slate-800/50 p-3 rounded-2xl border border-slate-700">
                 <div class="text-right hidden md:block">
                     <p class="text-[9px] font-black text-emerald-400 uppercase tracking-widest">Organizing Secretary</p>
                     <p id="secretary-name" class="font-bold text-sm text-white capitalize"></p>
@@ -49,52 +52,48 @@
     <main class="max-w-7xl mx-auto p-6 md:p-10">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             <div class="bg-white p-7 rounded-3xl shadow-sm border-t-4 border-blue-500 stat-card">
-                <p class="text-slate-400 text-[10px] font-black uppercase mb-1 tracking-widest">Total Attendance</p>
-                <h3 id="stat-ppl" class="text-4xl font-black text-slate-800 tracking-tighter">0</h3>
+                <p class="text-slate-400 text-[10px] font-black uppercase mb-1 tracking-widest text-center">Total Attendance</p>
+                <h3 id="stat-ppl" class="text-4xl font-black text-slate-800 tracking-tighter text-center">0</h3>
             </div>
             <div class="bg-white p-7 rounded-3xl shadow-sm border-t-4 border-emerald-500 stat-card">
-                <p class="text-slate-400 text-[10px] font-black uppercase mb-1 tracking-widest">Total Fleet</p>
-                <h3 id="stat-cars" class="text-4xl font-black text-slate-800 tracking-tighter">0</h3>
+                <p class="text-slate-400 text-[10px] font-black uppercase mb-1 tracking-widest text-center">Total Fleet</p>
+                <h3 id="stat-cars" class="text-4xl font-black text-slate-800 tracking-tighter text-center">0</h3>
             </div>
             <div class="bg-white p-7 rounded-3xl shadow-sm border-t-4 border-amber-500 stat-card">
-                <p class="text-slate-400 text-[10px] font-black uppercase mb-1 tracking-widest">Transport Budget</p>
-                <h3 id="stat-trans" class="text-3xl font-black text-slate-800 tracking-tighter">₦0</h3>
+                <p class="text-slate-400 text-[10px] font-black uppercase mb-1 tracking-widest text-center">Transport Budget</p>
+                <h3 id="stat-trans" class="text-3xl font-black text-slate-800 tracking-tighter text-center">₦0</h3>
             </div>
             <div class="bg-white p-7 rounded-3xl shadow-sm border-t-4 border-indigo-600 stat-card">
-                <p class="text-slate-400 text-[10px] font-black uppercase mb-1 tracking-widest">Allowance Total</p>
-                <h3 id="stat-allow" class="text-3xl font-black text-slate-800 tracking-tighter">₦0</h3>
+                <p class="text-slate-400 text-[10px] font-black uppercase mb-1 tracking-widest text-center">Allowance Total</p>
+                <h3 id="stat-allow" class="text-3xl font-black text-slate-800 tracking-tighter text-center">₦0</h3>
             </div>
         </div>
 
         <div class="flex flex-col lg:flex-row gap-10">
             <aside class="w-full lg:w-1/4">
                 <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-3 sticky top-40">
-                    <div class="flex justify-between items-center px-4 mb-4">
-                        <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest italic">Adamawa LGAs</h4>
-                        <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
-                    </div>
+                    <h4 class="text-[10px] font-black text-slate-400 uppercase px-4 mb-4 tracking-widest italic text-center">LGA List</h4>
                     <div id="lga-menu" class="max-h-[500px] overflow-y-auto space-y-1 pr-2">
                         </div>
                 </div>
             </aside>
 
             <section class="w-full lg:w-3/4 min-h-[500px]">
-                <div id="ward-header" class="hidden flex flex-col md:flex-row justify-between items-center mb-8 bg-white p-6 rounded-3xl shadow-sm border border-slate-100 gap-4">
+                <div id="ward-header" class="hidden flex flex-row justify-between items-center mb-8 bg-white p-6 rounded-3xl shadow-sm border border-slate-100">
                     <div>
-                        <h2 id="selected-lga-title" class="text-3xl font-black text-slate-900 uppercase italic tracking-tighter leading-none"></h2>
-                        <p class="text-[10px] font-black text-emerald-600 uppercase tracking-widest mt-1">Mobilization Operational Data</p>
+                        <h2 id="selected-lga-title" class="text-2xl font-black text-slate-900 uppercase italic tracking-tighter leading-none"></h2>
+                        <p class="text-[10px] font-black text-emerald-600 uppercase tracking-widest mt-1">LGA Operational Data Sheet</p>
                     </div>
-                    <div class="flex gap-2">
-                        <button id="admin-download" class="hidden bg-[#0f172a] text-white px-8 py-3 rounded-2xl font-black text-[10px] uppercase hover:bg-emerald-600 transition shadow-lg flex items-center gap-2">
-                            <span>📥</span> Download PDF
-                        </button>
-                    </div>
+                    <button id="admin-download" class="hidden bg-[#0f172a] text-white px-5 py-2.5 rounded-xl font-black text-[10px] uppercase hover:bg-emerald-600 transition shadow-lg flex items-center gap-2">
+                        <span>📥</span> Export PDF
+                    </button>
                 </div>
 
-                <div id="ward-list" class="space-y-6">
-                    <div class="text-center py-32 bg-white rounded-[40px] border-4 border-dashed border-slate-200">
-                        <p class="text-3xl mb-4">📍</p>
-                        <p class="text-slate-400 font-black uppercase tracking-tighter italic">Select an LGA from the side panel</p>
+                <div id="pdf-content-wrapper">
+                    <div id="ward-list" class="space-y-6">
+                        <div class="text-center py-32 bg-white rounded-[40px] border-4 border-dashed border-slate-200">
+                            <p class="text-slate-400 font-black uppercase tracking-tighter italic">Select an LGA to display Ward lists</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -102,20 +101,16 @@
     </main>
 
     <footer class="mt-20 py-12 border-t border-slate-200 text-center bg-white/50">
-        <p class="text-slate-800 text-[10px] font-black uppercase tracking-widest leading-loose">
-            Office of the Organizing Secretary — Adamawa State Chapter<br>
-            <span class="text-slate-400 font-bold italic lowercase tracking-normal">Proprietary Political Logistics Management System</span>
-        </p>
-        <p class="text-slate-400 text-[10px] mt-4 font-bold italic">© 2026 Internal Command Center. All Rights Reserved.</p>
+        <p class="text-slate-800 text-[10px] font-black uppercase tracking-widest italic">Office of the Organizing Secretary — Adamawa State</p>
+        <p class="text-slate-400 text-[10px] mt-4 font-bold">© 2026 Internal Command Center. All Rights Reserved.</p>
     </footer>
 
     <script>
-        // 1. CONFIGURATION
-        const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTb8kwNqnDfxQvvnRPgXWmD767fIKr3KJVJ5jOO7JKx55PROrCRDsq4v5l2anv3-W9GLDpdjJl4gC5t/pub?gid=1624545584&single=true&output=csv'; // PASTE CSV LINK HERE
+        const CSV_URL = 'Yhttps://docs.google.com/spreadsheets/d/e/2PACX-1vTb8kwNqnDfxQvvnRPgXWmD767fIKr3KJVJ5jOO7JKx55PROrCRDsq4v5l2anv3-W9GLDpdjJl4gC5t/pub?gid=1624545584&single=true&output=csv
+'; 
         const isAdmin = new URLSearchParams(window.location.search).get('admin') === '2026';
         let masterData = [];
 
-        // 2. SECRETARY NAME EXTRACTION
         function extractName() {
             const imgElement = document.getElementById('secretary-img');
             const fileName = imgElement.src.split('/').pop(); 
@@ -124,29 +119,24 @@
             document.getElementById('secretary-name').innerText = cleanName;
         }
 
-        // 3. LIVE CLOCK & SYNC TIMER
         function updateClock() {
             const now = new Date();
             document.getElementById('live-clock').innerText = now.toLocaleString('en-NG', { 
-                weekday: 'short', day: '2-digit', month: 'short', year: 'numeric', 
-                hour: '2-digit', minute: '2-digit', second: '2-digit' 
+                weekday: 'short', day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' 
             }).toUpperCase();
         }
         setInterval(updateClock, 1000);
         updateClock();
         extractName();
 
-        // 4. DATA ENGINE
         async function loadData() {
             try {
                 const res = await fetch(CSV_URL);
-                if (!res.ok) throw new Error("Database offline");
                 const text = await res.text();
                 const rows = text.split('\n').slice(1);
 
                 masterData = rows.map(r => {
                     const c = r.split(',');
-                    // Skipping c[0] for Timestamp
                     return {
                         lga: c[1]?.trim(),
                         ward: c[2]?.trim(),
@@ -160,9 +150,8 @@
                     };
                 }).filter(r => r.lga && r.ward);
 
-                if (masterData.length === 0) {
-                    displayEmpty();
-                } else {
+                if (masterData.length === 0) displayEmpty();
+                else { 
                     document.getElementById('sync-status').classList.remove('hidden');
                     updateDashboard(); 
                     renderLGAs(); 
@@ -171,11 +160,7 @@
         }
 
         function displayEmpty() {
-            document.getElementById('ward-list').innerHTML = `
-                <div class="py-32 text-center bg-white rounded-[40px] border-4 border-dashed border-red-100">
-                    <h2 class="text-3xl font-black text-red-200 uppercase tracking-tighter">No Active Programs</h2>
-                    <p class="text-slate-400 text-xs mt-2 italic font-bold">Please check Google Sheet connection or form submissions.</p>
-                </div>`;
+            document.getElementById('ward-list').innerHTML = `<div class="py-32 text-center text-slate-300 font-black italic">DATABASE NOT FOUND</div>`;
         }
 
         function updateDashboard() {
@@ -192,7 +177,7 @@
         function renderLGAs() {
             const lgas = [...new Set(masterData.map(r => r.lga))].sort();
             document.getElementById('lga-menu').innerHTML = lgas.map(lga => `
-                <div onclick="showWards('${lga}', this)" class="sidebar-item px-5 py-3 rounded-xl cursor-pointer text-[11px] font-black uppercase tracking-tight text-slate-500 border border-transparent">
+                <div onclick="showWards('${lga}', this)" class="sidebar-item px-5 py-3 rounded-xl cursor-pointer text-[11px] font-black uppercase tracking-tight text-slate-500">
                     ${lga}
                 </div>
             `).join('');
@@ -214,53 +199,39 @@
             }
 
             container.innerHTML = filtered.map(w => `
-                <div class="bg-white p-8 rounded-[40px] shadow-sm border border-slate-50 flex flex-col gap-6 transition hover:shadow-xl hover:border-emerald-100">
-                    <div class="flex justify-between items-center border-b border-slate-50 pb-4">
-                        <h4 class="text-2xl font-black text-slate-900 tracking-tighter underline decoration-emerald-500 decoration-4 underline-offset-8">${w.ward} Ward</h4>
-                        <span class="text-[9px] font-black bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full uppercase italic tracking-widest border border-emerald-200">Active</span>
+                <div class="bg-white p-8 rounded-[40px] shadow-sm border border-slate-100 flex flex-col gap-6 mb-6">
+                    <div class="flex justify-between items-center border-b pb-4">
+                        <h4 class="text-2xl font-black text-slate-900 tracking-tighter">${w.ward} Ward</h4>
+                        <div class="text-right">
+                             <p class="text-[8px] font-black text-slate-400 uppercase tracking-widest">Rate Per Car</p>
+                             <p class="text-xs font-black text-emerald-600 tracking-tight">₦${w.fee.toLocaleString()}</p>
+                        </div>
                     </div>
                     
                     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                        <div class="bg-slate-50 p-5 rounded-3xl border border-slate-100">
-                            <p class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">Total People</p>
-                            <p class="text-xl font-black text-slate-800">${w.ppl}</p>
-                        </div>
-                        <div class="bg-slate-50 p-5 rounded-3xl border border-slate-100">
-                            <p class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">Total Vehicles</p>
-                            <p class="text-xl font-black text-slate-800">${w.cars}</p>
-                        </div>
-                        <div class="bg-amber-50/30 p-5 rounded-3xl border border-amber-100">
-                            <p class="text-[9px] font-black text-amber-600 uppercase tracking-widest mb-1">Trans. Cost</p>
-                            <p class="text-xl font-black text-amber-700">₦${(w.cars*w.fee).toLocaleString()}</p>
-                        </div>
-                        <div class="bg-emerald-50/30 p-5 rounded-3xl border border-emerald-100">
-                            <p class="text-[9px] font-black text-emerald-600 uppercase tracking-widest mb-1">Allowances</p>
-                            <p class="text-xl font-black text-emerald-700">₦${(w.ppl*w.allow).toLocaleString()}</p>
-                        </div>
+                        <div class="bg-slate-50 p-5 rounded-3xl"><p class="text-[8px] font-bold text-slate-400 uppercase">People</p><p class="text-xl font-black">${w.ppl}</p></div>
+                        <div class="bg-slate-50 p-5 rounded-3xl"><p class="text-[8px] font-bold text-slate-400 uppercase">Total Cars</p><p class="text-xl font-black">${w.cars}</p></div>
+                        <div class="bg-amber-50/50 p-5 rounded-3xl"><p class="text-[8px] font-bold text-amber-600 uppercase">Trans. Total</p><p class="text-xl font-black">₦${(w.cars*w.fee).toLocaleString()}</p></div>
+                        <div class="bg-emerald-50/50 p-5 rounded-3xl"><p class="text-[8px] font-bold text-emerald-600 uppercase">Allowance</p><p class="text-xl font-black">₦${(w.ppl*w.allow).toLocaleString()}</p></div>
                     </div>
 
                     ${isAdmin ? `
-                    <div class="bg-[#0f172a] p-6 rounded-3xl text-white flex flex-col md:flex-row justify-between items-center shadow-2xl">
-                        <div class="text-center md:text-left">
-                            <p class="text-[9px] text-emerald-400 font-bold uppercase tracking-[0.2em] mb-1">Ward Disbursement Officer</p>
-                            <p class="text-lg font-black tracking-tight uppercase">${w.name}</p>
-                        </div>
-                        <div class="md:text-right mt-4 md:mt-0 pt-4 md:pt-0 border-t md:border-0 border-slate-700 w-full md:w-auto">
-                            <p class="text-[9px] text-emerald-400 font-bold uppercase tracking-[0.2em] mb-1">Banking Account Credentials</p>
-                            <p class="text-lg font-black tracking-tighter uppercase font-mono italic text-emerald-100">${w.bank} • ${w.acc}</p>
-                        </div>
+                    <div class="bg-[#0f172a] p-6 rounded-3xl text-white flex flex-col md:flex-row justify-between items-center">
+                        <div class="text-center md:text-left"><p class="text-[8px] text-emerald-400 font-bold uppercase tracking-widest mb-1">Coordinator Name</p><p class="text-lg font-black uppercase">${w.name}</p></div>
+                        <div class="md:text-right mt-4 md:mt-0"><p class="text-[8px] text-emerald-400 font-bold uppercase tracking-widest mb-1">Bank Payment Info</p><p class="text-lg font-black uppercase font-mono tracking-tighter">${w.bank} • ${w.acc}</p></div>
                     </div>` : ''}
                 </div>
             `).join('');
         }
 
         function exportPDF(lga) {
-            const element = document.getElementById('ward-list');
+            // Target the entire container that holds ALL ward cards for the LGA
+            const element = document.getElementById('pdf-content-wrapper'); 
             const opt = { 
-                margin: 0.5, 
-                filename: `Logistics_Report_${lga}.pdf`, 
-                image: { type: 'jpeg', quality: 1 },
-                html2canvas: { scale: 3 },
+                margin: 0.3, 
+                filename: `Logistics_Report_${lga}_Full.pdf`, 
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true },
                 jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' } 
             };
             html2pdf().set(opt).from(element).save();
@@ -268,5 +239,5 @@
 
         loadData();
     </script>
-</body>
+</body>..........
 </html>
